@@ -122,7 +122,7 @@ void ofxFfd::setControlPointPosition(int idx, const ofVec3f& vec){
 
 bool ofxFfd::getControlPointPosition(int ix, int iy, int iz, ofVec3f& vec)
 {
-    if ( ix > l || iy > m || iz < n )
+    if ( ix > l || iy > m || iz > n )
         return false;
 
     vec = PCI[ix][iy][iz];
