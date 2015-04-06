@@ -33,8 +33,11 @@ public:
     void enableMouseEvent();
     void disableMouseEvent();
 
-    void setControlPointPosition(int ix, int iy, int iz, ofVec3f vec);
-    void setControlPointPosition(int idx, ofVec3f vec);
+    void setControlPointPosition(int ix, int iy, int iz, const ofVec3f& vec);
+    void setControlPointPosition(int idx, const ofVec3f& vec);
+    
+    bool getControlPointPosition(int ix, int iy, int iz, ofVec3f& vec);
+    bool getControlPointPosition(int idx, ofVec3f& vec);
 
     void setup(int numX = 1, int numY = 1, int numZ = 1);
     void setControlPointSize(int numX = 1, int numY = 1, int numZ = 1);

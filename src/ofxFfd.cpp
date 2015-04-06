@@ -106,18 +106,35 @@ void ofxFfd::disableMouseEvent(){
     ofUnregisterMouseEvents(this);
 }
 
-void ofxFfd::setControlPointPosition(int ix, int iy, int iz, ofVec3f vec){
+void ofxFfd::setControlPointPosition(int ix, int iy, int iz, const ofVec3f& vec){
     if ( ix <= l && iy <= m && iz <= n )
         PCI[ix][iy][iz] = vec;
     else
         return;
 }
 
-void ofxFfd::setControlPointPosition(int idx, ofVec3f vec){
+void ofxFfd::setControlPointPosition(int idx, const ofVec3f& vec){
     int ix = idx%(l+1);
     int iy = int(idx/(l+1))%(m+1);
     int iz = int(idx/((l+1)*(m+1)))%(n+1);
     setControlPointPosition(ix, iy, iz, vec);
+}
+
+bool ofxFfd::getControlPointPosition(int ix, int iy, int iz, ofVec3f& vec)
+{
+    if ( ix > l || iy > m || iz < n )
+        return false;
+
+    vec = PCI[ix][iy][iz];
+    return true;
+}
+
+bool ofxFfd::getControlPointPosition(int idx, ofVec3f& vec)
+{
+    int ix = idx%(l+1);
+    int iy = int(idx/(l+1))%(m+1);
+    int iz = int(idx/((l+1)*(m+1)))%(n+1);
+    return getControlPointPosition(ix, iy, iz, vec);
 }
 
 void ofxFfd::setup(int numX, int numY, int numZ){
